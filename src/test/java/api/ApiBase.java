@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiBase {
 
-    final String BASE_URI = "https://demoqa.com/login";
+    final String BASE_URI = "https://demoqa.com";
     final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkVkRGlldCIsInBhc3N3b3JkIjoiKjhKOHZpeWtxQEFuYWdwIiwiaWF0IjoxNjgzNTQ3MjgwfQ.8Npxdiqvxyfr7tf3QFtd9ne533cKjcpJ0KTB9D1yYlY";
 
     RequestSpecification specification = new RequestSpecBuilder() // это интерфейс

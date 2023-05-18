@@ -13,13 +13,13 @@ public class LoginPage extends PageBase {
 
     Wait wait;
 
-    @FindBy(id = "")
+    @FindBy(id = "userName")
     public WebElement usernameField;
 
-    @FindBy(id = "")
+    @FindBy(id = "password")
     public WebElement passwordField;
 
-    @FindBy(id = "")
+    @FindBy(id = "login")
     public WebElement loginButton;
 
     public void waitForLoading() {
