@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ui.wait.Wait;
 
-public class LoginPage extends PageBase {
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);

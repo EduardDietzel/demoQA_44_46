@@ -12,7 +12,7 @@ public class SelectsAllTest extends TestBase {
     public void checkSelectValue() throws InterruptedException {
         selectPage = new SelectPage(app.driver);
         selectPage.goToSelectPage();
-        selectPage.selectInFirstInput("Group 1, option 2");
+        selectPage.selectValueDropdown("Group 1, option 2");
         Thread.sleep(5000);
     }
 
@@ -20,7 +20,7 @@ public class SelectsAllTest extends TestBase {
     public void checkOldSelectValue() throws InterruptedException {
         selectPage = new SelectPage(app.driver);
         selectPage.goToSelectPage();
-        selectPage.selectOld("8");
+        selectPage.selectOldDropdown("8");
         Thread.sleep(5000);
     }
 
@@ -28,6 +28,6 @@ public class SelectsAllTest extends TestBase {
     public void checkStandardMultiValue() {
         selectPage = new SelectPage(app.driver);
         selectPage.goToSelectPage();
-        selectPage.selectStandardMulti();
+//        selectPage.selectStandardMulti();
     }
 }

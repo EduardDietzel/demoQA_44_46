@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ui.wait.Wait;
 
-public class ProfilePage extends PageBase {
+public class ProfilePage extends BasePage {
 
     Wait wait;
 

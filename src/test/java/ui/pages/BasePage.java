@@ -1,15 +1,16 @@
 package ui.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class PageBase {
+public class BasePage {
 
     public WebDriver driver;
 
-    public PageBase(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -21,6 +22,10 @@ public class PageBase {
     public void fillField(WebElement field, String value) {
         field.click();
         field.clear();
+        field.sendKeys(value);
+    }
+
+    public void pressKey(WebElement field, Keys value) {
         field.sendKeys(value);
     }
 

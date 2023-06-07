@@ -1,6 +1,5 @@
 package ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import ui.wait.Wait;
 
-public class SelectPage extends PageBase {
+import java.util.List;
+
+
+public class SelectPage extends BasePage {
     Wait wait;
 
     public SelectPage(WebDriver driver) {
@@ -16,37 +18,72 @@ public class SelectPage extends PageBase {
     }
 
     @FindBy(id = "withOptGroup")
-    WebElement withOptGroup;
+    WebElement selectValueDropdown;
 
     @FindBy(id = "react-select-2-input")
-    WebElement firstInput;
+    WebElement selectOptionInput;
 
+    @FindBy(id = "selectOne")
+    WebElement selectOneDropdown;
+
+    @FindBy(id = "oldSelectMenu")
+    WebElement selectOldDropdown;
+
+    @FindBy(id = "oldSelectMenu")
+    WebElement standardMultiSelect;
+
+    @FindBy(id = "react-select-4-input")
+    WebElement multiSelectDropDown;
+
+    @FindBy(css = "[class=' css-yk16xz-control']")
+    WebElement thirdInput;
 
     public void goToSelectPage() {
         driver.get("https://demoqa.com/select-menu");
         wait = new Wait(driver);
-        wait.forVisibility(withOptGroup);
+        wait.forVisibility(selectValueDropdown);
     }
 
-    public void selectInFirstInput(String inputValue) {
-        driver.findElement(By.id("withOptGroup")).click();
-        wait.forVisibility(firstInput);
-        driver.findElement(By.id("react-select-2-input")).sendKeys(inputValue);
-        driver.findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
+    public void waitForLoading() {
+        wait = new Wait(driver);
+        wait.forVisibility(selectValueDropdown);
+        wait.forVisibility(selectOptionInput);
     }
 
-    public void selectOld(String inputValue) {
-        WebElement selectElement = driver.findElement(By.id("oldSelectMenu"));
-        Select select = new Select(selectElement);
-        select.selectByValue(inputValue);
-        select.selectByIndex(0);
-        select.selectByVisibleText("Blue");
+    public void selectValueDropdown(String inputValue) {
+        click(selectValueDropdown);
+        fillField(selectOptionInput, inputValue);
+        pressKey(selectOptionInput, Keys.ENTER);
+        // driver.findElement(By.id("withOptGroup")).click();
+        // wait.forVisibility(firstInput);
+//        driver.findElement(By.id("react-select-2-input")).sendKeys(inputValue);
+//        driver.findElement(By.id("react-select-2-input")).sendKeys(Keys.ENTER);
     }
 
-    public void selectStandardMulti() {
-        WebElement selectElement = driver.findElement(By.id("cars"));
-        Select select = new Select(selectElement);
-        select.selectByValue("opel");
-        select.selectByValue("audi");
+    public void selectOneDropdown(String inputValue) {
+        click(selectValueDropdown);
+        fillField(standardMultiSelect, inputValue);
+        pressKey(standardMultiSelect, Keys.ENTER);
+//        driver.findElement(By.id("selectOne")).click();
+//        wait.forVisibility(secondInput);
+//        driver.findElement(By.id("react-select-3-input")).sendKeys(inputValue);
+//        driver.findElement(By.id("react-select-3-input")).sendKeys(Keys.ENTER);
+    }
+
+    public void selectOldDropdown(String text) {
+        Select select = new Select(selectOldDropdown);
+        select.selectByVisibleText(text);
+//        WebElement selectElement = driver.findElement(By.id("oldSelectMenu"));
+//        select.selectByValue(value);
+//        select.selectByIndex(0);
+    }
+
+    public void standardMultiSelect(List<String> values) {
+        // WebElement selectElement = driver.findElement(By.id("cars"));
+        Select select = new Select(standardMultiSelect);
+        for (String value : values) {
+            select.selectByValue(value);
+        }
+
     }
 }
